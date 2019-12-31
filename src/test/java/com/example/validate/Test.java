@@ -5,9 +5,10 @@
  */
 package com.example.validate;
 
+import cn.hutool.core.util.NumberUtil;
 import com.example.validate.entity.UserDTO;
 
-import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Optional;
 
 /**
@@ -33,5 +34,17 @@ public class Test {
         BigDecimal b = BigDecimal.valueOf(13);
 
         System.out.println(a.compareTo(b));*/
+
+        int[] ints = NumberUtil.generateRandomNumber(00000000, 99999999, 10);
+        Integer[] integers = NumberUtil.generateBySet(00000000, 99999999, 5000);
+
+        System.out.println(Arrays.toString(ints));
+        System.out.println(Arrays.toString(integers));
+        System.out.println(integers.length);
+
+        String strs = "abc";
+
+        System.out.println(strs + 'b');
+
     }
 }

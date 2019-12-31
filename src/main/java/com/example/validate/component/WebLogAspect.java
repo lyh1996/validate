@@ -7,7 +7,6 @@ package com.example.validate.component;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
-import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
 import com.example.validate.entity.WebLog;
 import io.swagger.annotations.ApiOperation;
@@ -91,7 +90,7 @@ public class WebLogAspect {
         logMap.put("parameter",webLog.getParameter());
         logMap.put("spendTime",webLog.getSpendTime());
         logMap.put("description",webLog.getDescription());
-        LOGGER.info("{}", JSONUtil.parse(webLog));
+        //LOGGER.info("{}", JSONUtil.parse(webLog));
         LOGGER.info(Markers.appendEntries(logMap), JSONUtil.parse(webLog).toString());
         return result;
     }

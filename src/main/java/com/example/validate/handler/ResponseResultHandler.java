@@ -7,7 +7,7 @@ package com.example.validate.handler;
 
 import com.example.validate.entity.ResponseResult;
 import com.example.validate.entity.Result;
-import com.sun.org.apache.regexp.internal.RE;
+import com.example.validate.entity.ResultBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -42,10 +42,21 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
     }
 
     @Override
-    public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
+    public Object beforeBodyWrite(Object body, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
        log.info("进入 返回体  重写格式  处理中，，，，，");
        //处理异常
-        return Result.success(o);
+        //如果body为空，返回默认信息
+        if (body == null) {
+            return Result.success();
+        }
+        //匹配ResponseResult
+        if (body instanceof ResultBody) {
+            return body;
+        }
 
+        /**
+         * 其他情况直接将返回的信息直接塞在data中
+         */
+        return Result.success(body);
     }
 }

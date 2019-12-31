@@ -6,15 +6,13 @@
 package com.example.validate.entity;
 
 import com.example.validate.controller.Create;
-import com.example.validate.controller.Update;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -45,7 +43,10 @@ public class UserDTO implements Serializable {
 
     private Integer age;
 
-    @Valid
+/*    @Valid
     @NotNull(message = "省份信息不能为空")
-    private Province province;
+    private Province province;*/
+
+    @Max(value = 100000, message = "最大100000")
+    private Short num;
 }

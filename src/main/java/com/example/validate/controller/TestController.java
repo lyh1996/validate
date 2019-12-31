@@ -5,19 +5,16 @@
  */
 package com.example.validate.controller;
 
-import com.example.validate.entity.DateTimeDTO;
-import com.example.validate.entity.DateTimeDTO2;
-import com.example.validate.entity.ResponseResult;
-import com.example.validate.entity.UserDTO;
+import com.example.validate.entity.*;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * @author LYH
@@ -67,6 +64,14 @@ public class TestController {
             e.printStackTrace();
         }
         return dateTimeDTO1;
+    }
+
+    @ApiOperation("自定义校验参数的开始和结束时间的准确性")
+    @RequestMapping("/testTime")
+    public ResultBody testTime(@Valid @RequestBody TimeDTO timeDTO) {
+        System.out.println(timeDTO);
+
+        return ResultBody.success();
     }
 
 }
