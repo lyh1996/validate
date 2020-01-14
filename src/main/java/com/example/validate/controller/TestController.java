@@ -8,6 +8,7 @@ package com.example.validate.controller;
 import com.example.validate.entity.*;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -74,4 +75,9 @@ public class TestController {
         return ResultBody.success();
     }
 
+
+    @PostMapping("/custom")
+    public Object custom(@RequestBody @Validated CustomDTO customDTO) {
+        return customDTO;
+    }
 }
