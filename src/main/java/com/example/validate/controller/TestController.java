@@ -5,8 +5,11 @@
  */
 package com.example.validate.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.example.validate.entity.*;
+import com.example.validate.service.TestService;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +29,9 @@ import java.time.LocalDate;
 @ResponseResult
 public class TestController {
 
+    @Autowired
+    TestService service;
+
     @RequestMapping(value = "/validate")
     public void test(@Validated @RequestBody UserDTO user) {
         System.out.println(user);
@@ -40,7 +46,7 @@ public class TestController {
         userDTO.setEmail("1134388790");
         userDTO.setName("hahhah");
         userDTO.setAge(0);
-       return userDTO;
+        return userDTO;
     }
 
     @RequestMapping("/test")
@@ -56,7 +62,7 @@ public class TestController {
     @ApiOperation("测试参数")
     @RequestMapping("/testDate")
     public DateTimeDTO2 testDate(@RequestBody DateTimeDTO dateTimeDTO) {
-        System.out.println("传入的时间:"+dateTimeDTO.getAddTime());
+        System.out.println("传入的时间:" + dateTimeDTO.getAddTime());
         DateTimeDTO2 dateTimeDTO1 = new DateTimeDTO2();
         dateTimeDTO1.setAddTime(LocalDate.now());
         try {
@@ -80,4 +86,16 @@ public class TestController {
     public Object custom(@RequestBody @Validated CustomDTO customDTO) {
         return customDTO;
     }
+
+    @PostMapping("/testCheckParam")
+    public void testCheckParam(AccountVO accountVO) {
+
+        System.out.println("参数校验通过" + JSON.toJSONString(accountVO));
+        //AccountVO accountVO = new AccountVO();
+        //accountVO.setName("");
+        //accountVO.setAge(0);
+        service.testAccountVO(accountVO);
+    }
+
+
 }
