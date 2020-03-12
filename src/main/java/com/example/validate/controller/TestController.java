@@ -9,6 +9,8 @@ import com.alibaba.fastjson.JSON;
 import com.example.validate.entity.*;
 import com.example.validate.service.TestService;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +30,11 @@ import java.time.LocalDate;
 @Validated
 @ResponseResult
 public class TestController {
+
+    /**
+     * logger
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(TestController.class);
 
     @Autowired
     TestService service;

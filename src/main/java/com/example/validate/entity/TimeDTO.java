@@ -21,6 +21,11 @@ import java.time.LocalDateTime;
 @CheckTimeInterval(startTime = "startTime", endTime = "endTime", message = "发放开始时间不能大于发放结束时间")
 public class TimeDTO implements Serializable {
 
+    /***
+     @JsonFormat 表示的是指定格式返回给前端
+     @DateTimeFormat 表示对前端传过来的日期进行格式化
+     */
+
     private static final long serialVersionUID = 2226296721263586955L;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
