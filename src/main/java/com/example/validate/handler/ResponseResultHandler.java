@@ -38,7 +38,7 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
         HttpServletRequest request = sra.getRequest();
         // 判断请求 是否包含包装的标记
         ResponseResult responseResult = (ResponseResult) request.getAttribute(RESPONSE_RESULT_ANN);
-        return responseResult == null ? false : true;
+        return responseResult != null;
     }
 
     @Override
