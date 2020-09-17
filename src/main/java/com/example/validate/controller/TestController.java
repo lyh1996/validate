@@ -22,6 +22,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author LYH
@@ -117,6 +119,14 @@ public class TestController {
     @GetMapping("/updateServiceChargeDetailById")
     public void updateServiceChargeDetailById(@NotNull(message = "编辑列ID不能为空") Integer detailId, @NotNull(message = "比例不能为空") @Range(min = 0, max = 1, message = "费用不合理") BigDecimal feeDivide) {
         System.out.println("成功");
+    }
+
+    @GetMapping("/testLocalDate")
+    public ResultBody testLocalDate() {
+        DataTimeTestDTO dataTimeTestDTO = new DataTimeTestDTO();
+        dataTimeTestDTO.setNow(LocalDateTime.now());
+        dataTimeTestDTO.setUpdateTime(new Date());
+        return ResultBody.success(dataTimeTestDTO);
     }
 
 }

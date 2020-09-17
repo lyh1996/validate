@@ -10,10 +10,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author LYH
@@ -49,4 +48,8 @@ public class UserDTO implements Serializable {
 
     @Max(value = 100000, message = "最大100000")
     private Short num;
+
+    @NotNull(message = "列表不能为空")
+    @Size(min = 1, message = "列表为空")
+    private List<Integer> list;
 }
