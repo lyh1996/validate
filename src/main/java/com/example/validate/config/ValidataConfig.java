@@ -27,7 +27,6 @@ public class ValidataConfig {
                 // 设置快速失效
                 .failFast(true)
                 .buildValidatorFactory();
-        Validator validator = validatorFactory.getValidator();
-        return validator;
+        return validatorFactory.getValidator();
     }
 }
