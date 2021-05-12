@@ -51,7 +51,7 @@ public class TestController {
     }
 
 
-    @RequestMapping(value = "/validate")
+    @RequestMapping(value = "/validate", method = RequestMethod.POST)
     public void test(@Validated @RequestBody UserDTO user) {
         System.out.println(user);
 
@@ -114,6 +114,7 @@ public class TestController {
         //accountVO.setName("");
         //accountVO.setAge(0);
         service.testAccountVO(accountVO);
+        System.out.println(123);
     }
 
     @GetMapping("/updateServiceChargeDetailById")

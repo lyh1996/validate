@@ -11,7 +11,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.*;
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -21,10 +20,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO implements Serializable {
+public class UserDTO {
 
-
-    private static final long serialVersionUID = 6630731990225539965L;
 
     /***
      * TODO
