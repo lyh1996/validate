@@ -6,7 +6,15 @@
 package com.example.validate.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.example.validate.entity.*;
+import com.example.validate.entity.AccountVO;
+import com.example.validate.entity.CustomDTO;
+import com.example.validate.entity.DataTimeTestDTO;
+import com.example.validate.entity.DateTimeDTO;
+import com.example.validate.entity.DateTimeDTO2;
+import com.example.validate.entity.ResponseResult;
+import com.example.validate.entity.ResultBody;
+import com.example.validate.entity.TimeDTO;
+import com.example.validate.entity.UserDTO;
 import com.example.validate.service.HttpApi;
 import com.example.validate.service.TestService;
 import io.swagger.annotations.ApiOperation;
@@ -15,7 +23,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -114,7 +127,6 @@ public class TestController {
         //accountVO.setName("");
         //accountVO.setAge(0);
         service.testAccountVO(accountVO);
-        System.out.println(123);
     }
 
     @GetMapping("/updateServiceChargeDetailById")
