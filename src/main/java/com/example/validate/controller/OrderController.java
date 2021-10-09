@@ -27,7 +27,6 @@ public class OrderController extends AbstractController {
 
     @RequestMapping("/getOrderInfo")
     public List<OrderDO> getOrderInfo() {
-
         return orderBiz.getOrderInfo();
     }
 }
