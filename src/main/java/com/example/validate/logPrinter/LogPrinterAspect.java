@@ -29,19 +29,25 @@ import java.util.Map;
 public class LogPrinterAspect {
 
     // 如果想要 在类上加 然后使得方法全生效 请使用@within(com.tuya.yaochi.common.annotation.LogPrinter) 但是不建议
-    @Pointcut("@annotation(com.tuya.chiyou.common.annotation.LogPrinter)")
+    @Pointcut("@annotation(com.example.validate.logPrinter.LogPrinter)")
     public void requestServer() {
     }
 
-    @Around("requestServer()")
-    public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+    @Around("requestServer()&&@annotation(logPrinter)")
+    public Object doAround(ProceedingJoinPoint proceedingJoinPoint, LogPrinter logPrinter) throws Throwable {
         long start = System.currentTimeMillis();
         Object result = proceedingJoinPoint.proceed();
         LogPrinterInfo logPrinterInfo = new LogPrinterInfo();
         logPrinterInfo.setClassMethod(String.format("[%s.%s]", proceedingJoinPoint.getSignature().getDeclaringType().getSimpleName(),
                 proceedingJoinPoint.getSignature().getName()));
-        logPrinterInfo.setRequest(getRequestParamsByJoinPoint(proceedingJoinPoint));
-        logPrinterInfo.setResponse(result);
+        if (logPrinter.printRequest()) {
+            // 打印入参数
+            logPrinterInfo.setRequest(getRequestParamsByJoinPoint(proceedingJoinPoint));
+        }
+        if (logPrinter.printResult()) {
+            // 打印返回参数
+            logPrinterInfo.setResponse(result);
+        }
         logPrinterInfo.setTimeCost(System.currentTimeMillis() - start);
         log.info(logPrinterInfo.toString());
         return result;

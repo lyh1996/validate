@@ -15,6 +15,7 @@ import com.example.validate.entity.ResponseResult;
 import com.example.validate.entity.ResultBody;
 import com.example.validate.entity.TimeDTO;
 import com.example.validate.entity.UserDTO;
+import com.example.validate.logPrinter.LogPrinter;
 import com.example.validate.service.HttpApi;
 import com.example.validate.service.TestService;
 import io.swagger.annotations.ApiOperation;
@@ -135,6 +136,7 @@ public class TestController {
     }
 
     @GetMapping("/testLocalDate")
+    @LogPrinter(printRequest = false, printResult = false)
     public ResultBody testLocalDate() {
         DataTimeTestDTO dataTimeTestDTO = new DataTimeTestDTO();
         dataTimeTestDTO.setNow(LocalDateTime.now());

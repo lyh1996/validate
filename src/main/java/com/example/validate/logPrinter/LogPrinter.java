@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
  * @author 【千殇】（【罗玉华】qianshang.luo@tuya.com）
  * @since 2021/5/28 2:14 下午
  */
-@Target({ElementType.METHOD, ElementType.TYPE})
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
@@ -23,5 +23,15 @@ public @interface LogPrinter {
      * value : 用于日志方法前缀说明 暂时没有启用
      */
     String logPrefix() default "";
+
+    /**
+     * 是否打印请求参数
+     */
+    boolean printRequest() default true;
+
+    /**
+     * 是否打印返回结果
+     */
+    boolean printResult() default true;
 
 }
