@@ -19,6 +19,9 @@ import java.util.Objects;
  */
 public class CheckTimeIntervalValidator implements ConstraintValidator<CheckTimeInterval, Object> {
 
+    /**
+     * <p> 开始时间
+     */
     private String startTime;
 
     private String endTime;
